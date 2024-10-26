@@ -13,7 +13,7 @@ export default async function BrandsPage() {
     <div className='space-y-4'>
       <div className='text-right'>
         <Button size="sm" className='h-8 gap-1' asChild>
-          <Link href="/dashboard/locations/create">
+          <Link href="/dashboard/brands/create">
             <PlusCircle className='h-3.5 w-3.5' />
             <span className='sr-only sm:not-sr-only sm:whitespace-nowrap'>Add Brand</span>
           </Link>

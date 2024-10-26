@@ -9,13 +9,11 @@ export async function postCategory(
   _: unknown,
   formData: FormData
 ): Promise<ActionResult> {
-  // console.log("input type:", typeof (formData.get("name")))
   const validate = schemaCategory.safeParse({
     name: formData.get("name")
   });
 
   if (!validate.success) {
-    // console.log(validate.error.errors[0].message)
     return { error: validate.error.errors[0].message }
   }
 
