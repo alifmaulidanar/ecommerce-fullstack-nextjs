@@ -13,13 +13,13 @@ export const columns: ColumnDef<Brand>[] = [
   {
     accessorKey: "name",
     header: "Brand",
-    cell: async ({ row }) => {
+    cell: ({ row }) => {
       const brand = row.original
 
       return (
         <div className="inline-flex items-center gap-5">
           <Image
-            src={await getImageUrl(brand.logo)}
+            src={getImageUrl(brand.logo)}
             alt={brand.name}
             width={80}
             height={80}
