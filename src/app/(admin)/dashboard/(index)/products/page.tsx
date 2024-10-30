@@ -1,12 +1,15 @@
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { DataTable } from '@/components/ui/data-table'
-import { PlusCircle } from 'lucide-react'
-import Link from 'next/link'
 import React from 'react'
+import Link from 'next/link'
 import { columns } from './columns'
+import { getProducts } from './lib/data'
+import { PlusCircle } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { DataTable } from '@/components/ui/data-table'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
-export default function ProductPage() {
+export default async function ProductPage() {
+  const products = await getProducts()
+
   return (
     <div className='space-y-4'>
       <div className='text-right'>
@@ -25,7 +28,7 @@ export default function ProductPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <DataTable columns={columns} data={[]} />
+          <DataTable columns={columns} data={products} />
         </CardContent>
       </Card>
     </div>
