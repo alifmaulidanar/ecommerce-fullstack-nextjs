@@ -1,6 +1,6 @@
 import prisma from "../../../../../../../lib/prisma";
 
-export async function getLocationS() {
+export async function getLocations() {
   try {
     const locations = await prisma.location.findMany({});
     return locations;
