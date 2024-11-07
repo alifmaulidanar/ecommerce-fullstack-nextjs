@@ -1,15 +1,19 @@
 "use client"
 
+import Link from 'next/link'
+import React, { ReactNode } from 'react'
+import { useFormState, useFormStatus } from 'react-dom'
+import { AlertCircle, ChevronLeft } from 'lucide-react'
+import UploadImages from './upload-images'
+import { Input } from '@/components/ui/input'
+import { Label } from '@radix-ui/react-label'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Label } from '@radix-ui/react-label'
-import { ChevronLeft, Upload } from 'lucide-react'
-import Link from 'next/link'
-import Image from 'next/image'
-import React from 'react'
-import { useFormStatus } from 'react-dom'
+import { Textarea } from '@/components/ui/textarea'
+import { storeProduct } from '../lib/actions'
+import { ActionResult } from '@/types'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 // const initialState: ActionResult = { error: "" }
 
@@ -17,6 +21,10 @@ import { useFormStatus } from 'react-dom'
 //   type?: "ADD" | "EDIT",
 //   data?: Brand | null
 // }
+
+interface FormProductProps {
+  children?: ReactNode
+}
 
 function SubmitButton() {
   const { pending } = useFormStatus()
@@ -28,9 +36,13 @@ function SubmitButton() {
   )
 }
 
-export default function FormProduct() {
+const initialFormState: ActionResult = { error: "" }
+
+export default function FormProduct({ children }: FormProductProps) {
+  const [state, formAction] = useFormState(storeProduct, initialFormState)
+
   return (
-    <form action={""}>
+    <form action={formAction}>
       <div className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
         <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
           <div className="flex items-center gap-4">
@@ -62,7 +74,7 @@ export default function FormProduct() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {/* {state.error !== "" && (
+                  {state.error !== "" && (
                     <Alert variant="destructive">
                       <AlertCircle className="h-4 w-4" />
                       <AlertTitle>Error</AlertTitle>
@@ -70,7 +82,7 @@ export default function FormProduct() {
                         {state.error}
                       </AlertDescription>
                     </Alert>
-                  )} */}
+                  )}
                   <div className="grid gap-6 mt-4">
                     <div className="grid gap-3">
                       <Label htmlFor="name">Name</Label>
@@ -83,43 +95,21 @@ export default function FormProduct() {
                       />
                     </div>
                     <div className="grid gap-3">
-                      <Label htmlFor="name">Name</Label>
+                      <Label htmlFor="price">Price</Label>
                       <Input
-                        id="name"
-                        name="name"
-                        type="text"
+                        id="price"
+                        type="number"
+                        name="price"
                         className="w-full"
-                      // defaultValue={data?.name}
+                      // defaultValue={Number(data?.price ?? 0)}
                       />
                     </div>
                     <div className="grid gap-3">
-                      <Label htmlFor="name">Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        className="w-full"
-                      // defaultValue={data?.name}
-                      />
-                    </div>
-                    <div className="grid gap-3">
-                      <Label htmlFor="name">Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        className="w-full"
-                      // defaultValue={data?.name}
-                      />
-                    </div>
-                    <div className="grid gap-3">
-                      <Label htmlFor="logo">Logo</Label>
-                      <Input
-                        id="logo"
-                        name="image"
-                        type="file"
-                        className="w-full"
-                      // defaultValue={data?.logo}
+                      <Label htmlFor="name">Description</Label>
+                      <Textarea
+                        id="description"
+                        name='description'
+                        className="min-h-32"
                       />
                     </div>
                   </div>
@@ -132,66 +122,7 @@ export default function FormProduct() {
                 </CardHeader>
                 <CardContent>
                   <div className="grid gap-6 sm:grid-cols-3">
-                    <div className="grid gap-3">
-                      <Label htmlFor="category">Category</Label>
-                      <Select name='category_id'>
-                        <SelectTrigger
-                          id="category"
-                          aria-label="Select category"
-                        >
-                          <SelectValue placeholder="Select category" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="clothing">Clothing</SelectItem>
-                          <SelectItem value="electronics">
-                            Electronics
-                          </SelectItem>
-                          <SelectItem value="accessories">
-                            Accessories
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="grid gap-3">
-                      <Label htmlFor="brand">
-                        Brand
-                      </Label>
-                      <Select name='brand_id'>
-                        <SelectTrigger
-                          id="brand"
-                          aria-label="Select brand"
-                        >
-                          <SelectValue placeholder="Select brand" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="t-shirts">T-Shirts</SelectItem>
-                          <SelectItem value="hoodies">Hoodies</SelectItem>
-                          <SelectItem value="sweatshirts">
-                            Sweatshirts
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="grid gap-3">
-                      <Label htmlFor="location">
-                        Location
-                      </Label>
-                      <Select name='location_id'>
-                        <SelectTrigger
-                          id="location"
-                          aria-label="Select location"
-                        >
-                          <SelectValue placeholder="Select location" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="t-shirts">T-Shirts</SelectItem>
-                          <SelectItem value="hoodies">Hoodies</SelectItem>
-                          <SelectItem value="sweatshirts">
-                            Sweatshirts
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                    {children}
                   </div>
                 </CardContent>
               </Card>
@@ -205,66 +136,20 @@ export default function FormProduct() {
                   <div className="grid gap-6">
                     <div className="grid gap-3">
                       <Label htmlFor="status">Status</Label>
-                      <Select>
+                      <Select name='stock'>
                         <SelectTrigger id="status" aria-label="Select status">
                           <SelectValue placeholder="Select status" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="draft">Draft</SelectItem>
-                          <SelectItem value="published">Active</SelectItem>
-                          <SelectItem value="archived">Archived</SelectItem>
+                          <SelectItem value="ready">Ready</SelectItem>
+                          <SelectItem value="preorder">Preorder</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-              <Card
-                className="overflow-hidden"
-                x-chunk="A card with a form to upload product images"
-              >
-                <CardHeader>
-                  <CardTitle>Product Images</CardTitle>
-                  <CardDescription>
-                    Lipsum dolor sit amet, consectetur adipiscing elit
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid gap-2">
-                    <Image
-                      alt="Product image"
-                      className="aspect-square w-full rounded-md object-cover"
-                      height="300"
-                      src="/placeholder.svg"
-                      width="300"
-                    />
-                    <div className="grid grid-cols-3 gap-2">
-                      <button>
-                        <Image
-                          alt="Product image"
-                          className="aspect-square w-full rounded-md object-cover"
-                          height="84"
-                          src="/placeholder.svg"
-                          width="84"
-                        />
-                      </button>
-                      <button>
-                        <Image
-                          alt="Product image"
-                          className="aspect-square w-full rounded-md object-cover"
-                          height="84"
-                          src="/placeholder.svg"
-                          width="84"
-                        />
-                      </button>
-                      <button className="flex aspect-square w-full items-center justify-center rounded-md border border-dashed">
-                        <Upload className="h-4 w-4 text-muted-foreground" />
-                        <span className="sr-only">Upload</span>
-                      </button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <UploadImages />
             </div>
           </div>
           <div className="flex items-center justify-center gap-2 md:hidden">
