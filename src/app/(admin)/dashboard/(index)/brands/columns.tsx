@@ -19,7 +19,7 @@ export const columns: ColumnDef<Brand>[] = [
       return (
         <div className="inline-flex items-center gap-5">
           <Image
-            src={getImageUrl(brand.logo)}
+            src={getImageUrl(brand.logo, "brands")}
             alt={brand.name}
             width={80}
             height={80}
