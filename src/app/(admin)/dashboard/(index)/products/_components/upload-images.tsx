@@ -3,7 +3,11 @@ import { Upload } from 'lucide-react'
 import React, { ChangeEvent, useRef } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
-export default function UploadImages() {
+interface UploadImagesProps {
+  defaultImages: string[] | undefined;
+}
+
+export default function UploadImages({ defaultImages }: UploadImagesProps) {
   const ref = useRef<HTMLInputElement>(null)
   const thumbnailRef = useRef<HTMLImageElement>(null)
   const imageFirstRef = useRef<HTMLImageElement>(null)
@@ -27,6 +31,8 @@ export default function UploadImages() {
     }
   }
 
+  console.log({ defaultImages })
+
   return (
     <Card
       className="overflow-hidden"
@@ -47,6 +53,7 @@ export default function UploadImages() {
             src="/placeholder.svg"
             width="300"
             ref={thumbnailRef}
+            defaultValue={defaultImages?.[0] ?? '/placeholder.svg'}
           />
           <div className="grid grid-cols-3 gap-2">
             <button>
@@ -57,6 +64,7 @@ export default function UploadImages() {
                 src="/placeholder.svg"
                 width="84"
                 ref={imageFirstRef}
+                defaultValue={defaultImages?.[1] ?? '/placeholder.svg'}
               />
             </button>
             <button>
@@ -67,6 +75,7 @@ export default function UploadImages() {
                 src="/placeholder.svg"
                 width="84"
                 ref={imageSecondRef}
+                defaultValue={defaultImages?.[2] ?? '/placeholder.svg'}
               />
             </button>
             <button type='button' onClick={openFolder} className="flex aspect-square w-full items-center justify-center rounded-md border border-dashed">
