@@ -64,4 +64,8 @@ export const schemaProduct = z.object({
     }, {
       message: "Invalid file type"
     })
-})
+});
+
+export const schemaProductEdit = schemaProduct.extend({
+  id: z.number({ required_error: "ID is required" }),
+}).omit({ images: true });
