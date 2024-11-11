@@ -1,11 +1,11 @@
 "use server"
 
-import { schemaProduct, schemaProductEdit } from "@/lib/schema";
-import { uploadFile } from "@/lib/supabase";
 import { ActionResult } from "@/types";
 import { redirect } from "next/navigation";
-import prisma from "../../../../../../../lib/prisma";
 import { ProductStock } from "@prisma/client";
+import prisma from "../../../../../../../lib/prisma";
+import { deleteFile, uploadFile } from "@/lib/supabase";
+import { schemaProduct, schemaProductEdit } from "@/lib/schema";
 
 export async function storeProduct(
   _: unknown,
@@ -136,6 +136,45 @@ export async function updateProduct(
   } catch (error) {
     console.error(error)
     return { error: "Failed to update product" }
+  }
+
+  return redirect("/dashboard/products");
+}
+
+export async function deleteProduct(
+  _: unknown,
+  formData: FormData,
+  id: number
+): Promise<ActionResult> {
+  const product = await prisma.product.findFirst({
+    where: {
+      id
+    },
+    select: {
+      id: true,
+      images: true
+    }
+  })
+
+  if (!product) {
+    return {
+      error: "Product not found"
+    }
+  }
+
+  try {
+    for (const image of product.images) {
+      await deleteFile(image, "products");
+    }
+
+    await prisma.product.delete({
+      where: {
+        id
+      }
+    })
+  } catch (error) {
+    console.error(error)
+    return { error: "Failed to delete product" }
   }
 
   return redirect("/dashboard/products");
