@@ -71,6 +71,7 @@ export async function updateProduct(
     brand_id: formData.get("brand_id"),
     category_id: formData.get("category_id"),
     location_id: formData.get("location_id"),
+    id: id,
   });
 
   if (!parse.success) {
