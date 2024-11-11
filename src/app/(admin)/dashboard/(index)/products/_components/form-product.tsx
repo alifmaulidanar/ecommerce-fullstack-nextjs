@@ -1,19 +1,20 @@
 "use client"
 
 import Link from 'next/link'
+import { ActionResult } from '@/types'
 import React, { ReactNode } from 'react'
-import { useFormState, useFormStatus } from 'react-dom'
-import { AlertCircle, ChevronLeft } from 'lucide-react'
+import { Product } from '@prisma/client'
 import UploadImages from './upload-images'
+import { storeProduct, updateProduct } from '../lib/actions'
 import { Input } from '@/components/ui/input'
 import { Label } from '@radix-ui/react-label'
 import { Button } from '@/components/ui/button'
+import { Textarea } from '@/components/ui/textarea'
+import { AlertCircle, ChevronLeft } from 'lucide-react'
+import { useFormState, useFormStatus } from 'react-dom'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Textarea } from '@/components/ui/textarea'
-import { storeProduct } from '../lib/actions'
-import { ActionResult } from '@/types'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 // const initialState: ActionResult = { error: "" }
 
@@ -23,7 +24,9 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 // }
 
 interface FormProductProps {
-  children?: ReactNode
+  children: ReactNode
+  type: 'ADD' | 'EDIT'
+  data?: Product | null
 }
 
 function SubmitButton() {
@@ -38,8 +41,9 @@ function SubmitButton() {
 
 const initialFormState: ActionResult = { error: "" }
 
-export default function FormProduct({ children }: FormProductProps) {
-  const [state, formAction] = useFormState(storeProduct, initialFormState)
+export default function FormProduct({ children, type, data }: FormProductProps) {
+  const updateProductWithId = (_: unknown, formData: FormData) => updateProduct(_, formData, data?.id ?? 0)
+  const [state, formAction] = useFormState(type === "ADD" ? storeProduct : updateProductWithId, initialFormState)
 
   return (
     <form action={formAction}>
@@ -91,7 +95,7 @@ export default function FormProduct({ children }: FormProductProps) {
                         name="name"
                         type="text"
                         className="w-full"
-                      // defaultValue={data?.name}
+                        defaultValue={data?.name}
                       />
                     </div>
                     <div className="grid gap-3">
@@ -101,7 +105,7 @@ export default function FormProduct({ children }: FormProductProps) {
                         type="number"
                         name="price"
                         className="w-full"
-                      // defaultValue={Number(data?.price ?? 0)}
+                        defaultValue={Number(data?.price ?? 0)}
                       />
                     </div>
                     <div className="grid gap-3">
@@ -110,6 +114,7 @@ export default function FormProduct({ children }: FormProductProps) {
                         id="description"
                         name='description'
                         className="min-h-32"
+                        defaultValue={data?.description}
                       />
                     </div>
                   </div>
@@ -136,7 +141,7 @@ export default function FormProduct({ children }: FormProductProps) {
                   <div className="grid gap-6">
                     <div className="grid gap-3">
                       <Label htmlFor="status">Status</Label>
-                      <Select name='stock'>
+                      <Select name='stock' defaultValue={data?.stock}>
                         <SelectTrigger id="status" aria-label="Select status">
                           <SelectValue placeholder="Select status" />
                         </SelectTrigger>
@@ -149,7 +154,7 @@ export default function FormProduct({ children }: FormProductProps) {
                   </div>
                 </CardContent>
               </Card>
-              <UploadImages />
+              <UploadImages defaultImages={data?.images} />
             </div>
           </div>
           <div className="flex items-center justify-center gap-2 md:hidden">
