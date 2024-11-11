@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Edit } from "lucide-react"
 import Link from "next/link"
-// import DeleteBrand from "../brands/_components/delete"
+import DeleteProduct from "../products/_components/delete"
 
 export type TColumn = {
   id: number
@@ -83,7 +83,7 @@ export const columns: ColumnDef<TColumn>[] = [
               <Edit className="w-4 h-4 mr-2" />Edit
             </Link>
           </Button>
-          {/* <DeleteBrand id={product.id} /> */}
+          <DeleteProduct id={product.id} />
         </div>
       )
     },
