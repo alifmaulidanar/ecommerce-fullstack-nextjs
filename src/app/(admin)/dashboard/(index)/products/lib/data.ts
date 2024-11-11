@@ -30,9 +30,9 @@ export async function getProducts() {
         },
         images: true
       }
-    });
+    })
 
-    const responseProduct: TColumn[] = products.map((product) => {
+    const response_products: TColumn[] = products.map((product) => {
       return {
         brand_name: product.brand.name,
         category_name: product.category.name,
@@ -44,10 +44,26 @@ export async function getProducts() {
         stock: product.stock,
         total_sales: product._count.orders
       }
-    });
-    return responseProduct;
+    })
+
+    return response_products
   } catch (error) {
-    console.error(error);
-    return [];
+    console.log(error);
+    return []
+  }
+}
+
+export async function getProductById(id: number) {
+  try {
+    const product = await prisma.product.findFirst({
+      where: {
+        id: id
+      }
+    })
+
+    return product
+  } catch (error) {
+    console.log(error);
+    return null
   }
 }
