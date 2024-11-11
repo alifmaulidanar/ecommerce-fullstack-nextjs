@@ -94,7 +94,7 @@ export async function updateProduct(
   }
 
   const uploadedImages = formData.getAll("images") as File[];
-  const fileNames = product.images
+  let fileNames = []
 
   if (uploadedImages.length === 3) {
     const parsedImages = schemaProduct.pick({ images: true }).safeParse({
@@ -113,6 +113,8 @@ export async function updateProduct(
       const fileName = await uploadFile(image, "products");
       fileNames.push(fileName);
     }
+  } else {
+    fileNames = product.images
   }
 
   try {
