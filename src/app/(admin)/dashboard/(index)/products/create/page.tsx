@@ -12,7 +12,7 @@ export default async function CreatePage() {
   const locations = await getLocations()
 
   return (
-    <FormProduct>
+    <FormProduct type='ADD'>
       <div className="grid gap-3">
         <Label htmlFor="category">Category</Label>
         <Select name='category_id'>

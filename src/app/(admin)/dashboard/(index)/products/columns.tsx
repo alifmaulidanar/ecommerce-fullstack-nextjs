@@ -74,16 +74,16 @@ export const columns: ColumnDef<TColumn>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const brand = row.original
+      const product = row.original
 
       return (
         <div className="space-x-4 inline-flex">
           <Button size="sm" asChild>
-            <Link href={`/dashboard/brands/edit/${brand.id}`}>
+            <Link href={`/dashboard/products/edit/${product.id}`}>
               <Edit className="w-4 h-4 mr-2" />Edit
             </Link>
           </Button>
-          {/* <DeleteBrand id={brand.id} /> */}
+          {/* <DeleteBrand id={product.id} /> */}
         </div>
       )
     },
