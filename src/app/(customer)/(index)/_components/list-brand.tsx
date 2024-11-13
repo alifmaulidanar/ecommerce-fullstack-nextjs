@@ -4,7 +4,7 @@ import { getBrands } from '../lib/data'
 
 export default async function ListBrand() {
   const brands = await getBrands()
-  console.log({ brands })
+
   return (
     <div id="brands" className="flex flex-col gap-[30px]">
       <div className="flex items-center justify-between">
