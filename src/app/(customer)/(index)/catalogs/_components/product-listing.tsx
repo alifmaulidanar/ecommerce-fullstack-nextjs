@@ -1,30 +1,29 @@
+"use client"
+
 import React from 'react'
+import { fetchProduct } from '../lib/data'
+import { useFilter } from '@/hooks/useFilter'
+import { useQuery } from '@tanstack/react-query'
 import CardProduct from '../../_components/card-product'
 
 export default function ProductListing() {
+  const { filter } = useFilter()
+  const { data, isLoading } = useQuery({
+    queryKey: ["products-listing", filter],
+    queryFn: () => fetchProduct(filter)
+  })
+
+  if (isLoading) return (
+    <div className="grid grid-cols-1 gap-[30px]">
+      <span>Loading...</span>
+    </div>
+  )
+
   return (
     <div className="grid grid-cols-3 gap-[30px]">
-      {/* <a href="details.html" className="product-card">
-        <div className="bg-white flex flex-col gap-[24px] p-5 rounded-[20px] ring-1 ring-[#E5E5E5] hover:ring-2 hover:ring-[#FFC736] transition-all duration-300 w-full">
-          <div className="w-full h-[90px] flex shrink-0 items-center justify-center overflow-hidden">
-            <img src="assets/thumbnails/color_back_green__buxxfjccqjzm_large_2x-Photoroom 1.png" className="w-full h-full object-contain" alt="thumbnail" />
-          </div>
-          <div className="flex flex-col gap-[10px]">
-            <div className="flex flex-col gap-1">
-              <p className="font-semibold leading-[22px]">iMac Green Energy</p>
-              <p className="text-sm text-[#616369]">Desktops</p>
-            </div>
-            <p className="font-semibold text-[#0D5CD7] leading-[22px]">Rp 24.000.000</p>
-          </div>
-        </div>
-      </a> */}
-      <CardProduct product={{
-        id: 1,
-        name: "Laptop",
-        images_url: "assets/thumbnails/color_back_green__buxxfjccqjzm_large_2x-Photoroom 1.png",
-        category_name: "Electronics",
-        price: 12000000
-      }} />
+      {data?.map((product) => (
+        <CardProduct key={product.id + product.name} product={product} />
+      ))}
     </div>
   )
 }
