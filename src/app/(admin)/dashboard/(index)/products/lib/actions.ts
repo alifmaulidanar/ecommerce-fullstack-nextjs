@@ -102,7 +102,6 @@ export async function updateProduct(
     })
 
     if (!parsedImages.success) {
-      console.log("Failed to parse images");
       console.error(parsedImages.error.errors);
       return {
         error: parsedImages.error.errors[0].message,

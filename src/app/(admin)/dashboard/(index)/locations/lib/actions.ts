@@ -9,13 +9,11 @@ export async function postLocation(
   _: unknown,
   formData: FormData
 ): Promise<ActionResult> {
-  // console.log("input type:", typeof (formData.get("name")))
   const validate = schemaLocation.safeParse({
     name: formData.get("name")
   });
 
   if (!validate.success) {
-    // console.log(validate.error.errors[0].message)
     return { error: validate.error.errors[0].message }
   }
 

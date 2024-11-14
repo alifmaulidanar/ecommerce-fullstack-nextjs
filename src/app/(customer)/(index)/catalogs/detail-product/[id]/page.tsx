@@ -1,12 +1,11 @@
 import { getUser } from '@/lib/auth'
-import React, { Suspense } from 'react'
+import React from 'react'
 import { redirect } from 'next/navigation'
 import { DetailProductProp } from '@/types'
 import { getProductById } from './lib/data'
 import Navbar from '../../../_components/navbar'
 import PriceInfo from './_components/price-info'
 import CarouselImages from './_components/carousel-images'
-import LisTproduct from '../../../_components/list-product'
 
 export default async function DetailProductPage({ params }: DetailProductProp) {
   const { session } = await getUser()
@@ -32,212 +31,13 @@ export default async function DetailProductPage({ params }: DetailProductProp) {
           </div>
           <h1 className="font-bold text-4xl leading-9 text-black">{product.name}</h1>
         </div>
-        <div className="flex items-center gap-2 justify-end">
-          <div className="flex items-center">
-            <div className="flex shrink-0">
-              <img src="/assets/icons/Star.svg" alt="star" />
-            </div>
-            <div className="flex shrink-0">
-              <img src="/assets/icons/Star.svg" alt="star" />
-            </div>
-            <div className="flex shrink-0">
-              <img src="/assets/icons/Star.svg" alt="star" />
-            </div>
-            <div className="flex shrink-0">
-              <img src="/assets/icons/Star.svg" alt="star" />
-            </div>
-            <div className="flex shrink-0">
-              <img src="/assets/icons/Star-gray.svg" alt="star" />
-            </div>
-          </div>
-          <p className="font-semibold text-black">({product._count.orders})</p>
-        </div>
       </div>
       <CarouselImages images={product.images} />
-      <div id="details-benefits" className="container max-w-[1130px] mx-auto flex items-center gap-[50px] justify-center mt-[50px]">
-        <div className="flex items-center gap-[10px]">
-          <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
-            <img src="/assets/icons/star-outline.svg" alt="icon" />
-          </div>
-          <p className="font-semibold text-sm">Include Official <br /> Warranty</p>
-        </div>
-        <div className="border-[0.5px] border-[#E5E5E5] h-12"></div>
-        <div className="flex items-center gap-[10px]">
-          <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
-            <img src="/assets/icons/code-circle.svg" alt="icon" />
-          </div>
-          <p className="font-semibold text-sm">Bonus Mac OS <br /> Capitan Pro</p>
-        </div>
-        <div className="border-[0.5px] border-[#E5E5E5] h-12"></div>
-        <div className="flex items-center gap-[10px]">
-          <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
-            <img src="/assets/icons/like.svg" alt="icon" />
-          </div>
-          <p className="font-semibold text-sm">100% Original <br /> From Factory</p>
-        </div>
-        <div className="border-[0.5px] border-[#E5E5E5] h-12"></div>
-        <div className="flex items-center gap-[10px]">
-          <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
-            <img src="/assets/icons/tag.svg" alt="icon" />
-          </div>
-          <p className="font-semibold text-sm">Free Tax On <br /> Every Sale</p>
-        </div>
-      </div>
-      <div id="details-info" className="container max-w-[1030px] mx-auto flex justify-between gap-5 mt-[50px]">
+      <div id="details-info" className="container max-w-[1030px] mx-auto flex justify-between gap-5 mt-[50px] pb-[100px]">
         <div className="max-w-[650px] w-full flex flex-col gap-[30px]">
           <div id="about" className="flex flex-col gap-[10px]">
             <h3 className="font-semibold">About Product</h3>
             <p className="leading-[32px]">{product.description}</p>
-          </div>
-          <div id="testi" className="flex flex-col gap-[10px] text-black">
-            <h3 className="font-semibold">Real Testimonials</h3>
-            <div className="grid grid-cols-2 gap-5">
-              <div className="testi-card flex flex-col bg-white p-5 gap-5 border border-[#E5E5E5] rounded-[20px] h-fit">
-                <div className="flex">
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star-gray.svg" alt="star" />
-                  </div>
-                </div>
-                <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>
-                <div className="flex items-center gap-[10px]">
-                  <div className="w-[50px] h-[50px] flex shrink-0 rounded-full p-1 border border-[#E5E5E5] overflow-hidden">
-                    <img src="/assets/photos/p2.png" className="w-full h-full object-cover rounded-full" alt="photo" />
-                  </div>
-                  <div className="flex flex-col gap-[2px]">
-                    <p className="font-semibold text-sm leading-[22px]">Angga Risky</p>
-                    <p className="text-xs leading-[18px]">12 January 2028</p>
-                  </div>
-                </div>
-              </div>
-              <div className="testi-card flex flex-col bg-white p-5 gap-5 border border-[#E5E5E5] rounded-[20px] h-fit">
-                <div className="flex">
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star-gray.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star-gray.svg" alt="star" />
-                  </div>
-                </div>
-                <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>
-                <div className="flex items-center gap-[10px]">
-                  <div className="w-[50px] h-[50px] flex shrink-0 rounded-full p-1 border border-[#E5E5E5] overflow-hidden">
-                    <img src="/assets/photos/p4.png" className="w-full h-full object-cover rounded-full" alt="photo" />
-                  </div>
-                  <div className="flex flex-col gap-[2px]">
-                    <p className="font-semibold text-sm leading-[22px]">Sarifuding</p>
-                    <p className="text-xs leading-[18px]">12 January 2028</p>
-                  </div>
-                </div>
-              </div>
-              <div className="testi-card flex flex-col bg-white p-5 gap-5 border border-[#E5E5E5] rounded-[20px] h-fit">
-                <div className="flex">
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                </div>
-                <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>
-                <div className="flex items-center gap-[10px]">
-                  <div className="w-[50px] h-[50px] flex shrink-0 rounded-full p-1 border border-[#E5E5E5] overflow-hidden">
-                    <img src="/assets/photos/p3.png" className="w-full h-full object-cover rounded-full" alt="photo" />
-                  </div>
-                  <div className="flex flex-col gap-[2px]">
-                    <p className="font-semibold text-sm leading-[22px]">Ika Nurina</p>
-                    <p className="text-xs leading-[18px]">12 January 2028</p>
-                  </div>
-                </div>
-              </div>
-              <div className="testi-card flex flex-col bg-white p-5 gap-5 border border-[#E5E5E5] rounded-[20px] h-fit">
-                <div className="flex">
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star-gray.svg" alt="star" />
-                  </div>
-                </div>
-                <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>
-                <div className="flex items-center gap-[10px]">
-                  <div className="w-[50px] h-[50px] flex shrink-0 rounded-full p-1 border border-[#E5E5E5] overflow-hidden">
-                    <img src="/assets/photos/p1.png" className="w-full h-full object-cover rounded-full" alt="photo" />
-                  </div>
-                  <div className="flex flex-col gap-[2px]">
-                    <p className="font-semibold text-sm leading-[22px]">Sami Mami</p>
-                    <p className="text-xs leading-[18px]">12 January 2028</p>
-                  </div>
-                </div>
-              </div>
-              <div className="testi-card flex flex-col bg-white p-5 gap-5 border border-[#E5E5E5] rounded-[20px] h-fit">
-                <div className="flex">
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star-gray.svg" alt="star" />
-                  </div>
-                  <div className="flex shrink-0">
-                    <img src="/assets/icons/Star-gray.svg" alt="star" />
-                  </div>
-                </div>
-                <p className="line-clamp-2 hover:line-clamp-none leading-[28px]">I do really love this product helped me to achieve my first million Lorem ipsum dolor sit amet.</p>
-                <div className="flex items-center gap-[10px]">
-                  <div className="w-[50px] h-[50px] flex shrink-0 rounded-full p-1 border border-[#E5E5E5] overflow-hidden">
-                    <img src="/assets/photos/p2.png" className="w-full h-full object-cover rounded-full" alt="photo" />
-                  </div>
-                  <div className="flex flex-col gap-[2px]">
-                    <p className="font-semibold text-sm leading-[22px]">Baronia</p>
-                    <p className="text-xs leading-[18px]">12 January 2028</p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <PriceInfo isLoggedIn={session ? true : false} item={{
@@ -247,11 +47,6 @@ export default async function DetailProductPage({ params }: DetailProductProp) {
           images_url: product.images[0],
           price: Number(product.price),
         }} />
-      </div>
-      <div id="recommedations" className="container max-w-[1130px] mx-auto flex flex-col gap-[30px] pb-[100px] mt-[70px]">
-        <Suspense fallback={<span>Loading...</span>}>
-          <LisTproduct title={<>Other Products <br /> You Might Need</>} isShowDetail={false} />
-        </Suspense>
       </div>
     </>
   )

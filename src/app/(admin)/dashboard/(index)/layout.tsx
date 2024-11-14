@@ -4,7 +4,6 @@ import { getUser } from "@/lib/auth";
 import { Inter } from "next/font/google";
 import Header from "./_components/header";
 import { redirect } from "next/navigation";
-import Sidebar from "./_components/sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +27,6 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex min-h-screen w-full flex-col bg-muted/40">
-          <Sidebar />
           <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
             <Header />
             <main className="p-4">

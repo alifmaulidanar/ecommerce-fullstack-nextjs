@@ -48,7 +48,7 @@ export async function getProducts() {
 
     return response_products
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return []
   }
 }
@@ -63,7 +63,7 @@ export async function getProductById(id: number) {
 
     return product
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return null
   }
 }

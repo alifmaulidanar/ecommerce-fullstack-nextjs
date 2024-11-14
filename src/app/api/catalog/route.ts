@@ -89,8 +89,6 @@ export async function POST(request: Request) {
       },
     })
 
-    console.log({ ORQuery })
-
     const response: Tproduct[] = product.map((product) => {
       return {
         id: product.id,

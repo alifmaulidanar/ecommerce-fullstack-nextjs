@@ -31,8 +31,6 @@ export default function UploadImages({ defaultImages }: UploadImagesProps) {
     }
   }
 
-  console.log({ defaultImages })
-
   return (
     <Card
       className="overflow-hidden"

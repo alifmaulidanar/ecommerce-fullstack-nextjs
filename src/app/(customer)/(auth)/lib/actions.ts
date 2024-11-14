@@ -18,7 +18,6 @@ export async function SignIn(
   })
 
   if (!validate.success) {
-    console.log(validate)
     return { error: validate.error.errors[0].message }
   }
 
