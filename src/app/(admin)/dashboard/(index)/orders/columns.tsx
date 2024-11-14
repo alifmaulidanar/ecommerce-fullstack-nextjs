@@ -1,19 +1,19 @@
 "use client"
 
 import Image from "next/image"
-import { StatusOrder } from "@prisma/client"
-import { ColumnDef } from "@tanstack/react-table"
 import { rupiahFormat } from "@/lib/utils"
+import { StatusOrder } from "@prisma/client"
 import { Badge } from "@/components/ui/badge"
+import { ColumnDef } from "@tanstack/react-table"
 
-type TProduct = {
+type Tproduct = {
   name: string,
   image: string,
 }
 
 export type TColumn = {
   id: number,
-  products: TProduct[],
+  products: Tproduct[],
   customer_name: string,
   price: number,
   status: StatusOrder

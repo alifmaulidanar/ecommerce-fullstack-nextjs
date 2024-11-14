@@ -1,22 +1,15 @@
 import React from 'react'
 import Link from 'next/link'
+import { Tproduct } from '@/types'
 import { rupiahFormat } from '@/lib/utils'
 
-type TProduct = {
-  id: number
-  name: string
-  images_url: string
-  category_name: string
-  price: number
-}
-
 interface CardProductProps {
-  product: TProduct
+  product: Tproduct
 }
 
 export default function CardProduct({ product }: CardProductProps) {
   return (
-    <Link href="#" className="product-card">
+    <Link href={`/catalogs/detail-product/${product.id}`} className="product-card">
       <div className="bg-white flex flex-col gap-[24px] p-5 rounded-[20px] ring-1 ring-[#E5E5E5] hover:ring-2 hover:ring-[#FFC736] transition-all duration-300 w-full">
         <div className="w-full h-[90px] flex shrink-0 items-center justify-center overflow-hidden">
           <img src={product.images_url} className="w-full h-full object-contain" alt="thumbnail" />
