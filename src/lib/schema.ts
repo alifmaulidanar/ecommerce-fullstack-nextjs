@@ -77,7 +77,7 @@ export const schemaProductEdit = schemaProduct.extend({
 }).omit({ images: true });
 
 export const schemaShippingAddress = z.object({
-  name: z.string({ required_error: "Name is required" }).min(5, { message: "Name must be at least 5 characters" }),
+  name: z.string({ required_error: "Name is required" }).min(3, { message: "Name must be at least 3 characters" }),
   address: z.string({ required_error: "Address is required" }).min(5, { message: "Address must be at least 5 characters" }),
   city: z.string({ required_error: "City is required" }).min(3, { message: "City must be at least 3 characters" }),
   postalCode: z.string({ required_error: "Postal Code is required" }).min(5, { message: "Postal code must be at least 5 characters" }),

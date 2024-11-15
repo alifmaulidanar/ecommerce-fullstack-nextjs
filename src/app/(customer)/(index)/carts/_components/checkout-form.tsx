@@ -35,6 +35,14 @@ export default function CheckoutForm() {
       <div className="w-[650px] flex flex-col shrink-0 gap-4 h-fit">
         <h2 className="font-bold text-2xl leading-[34px]">Your Shipping Address</h2>
         <div className="flex flex-col gap-5 p-[30px] rounded-3xl border border-[#E5E5E5] bg-white">
+
+          {state.error !== "" &&
+            <div className='border border-red-300 text-red-500 p-3 rounded'>
+              <h4 className='font-semibold'>Error</h4>
+              <p className='text-sm'>{state.error}</p>
+            </div>
+          }
+
           <div className="flex items-center gap-[10px] rounded-full border border-[#E5E5E5] p-[12px_20px] focus-within:ring-2 focus-within:ring-[#FFC736] transition-all duration-300">
             <div className="flex shrink-0">
               <img src="/assets/icons/profile-circle.svg" alt="icon" />
@@ -78,22 +86,6 @@ export default function CheckoutForm() {
       <div className="flex flex-1 flex-col shrink-0 gap-4 h-fit">
         <h2 className="font-bold text-2xl leading-[34px]">Payment Details</h2>
         <div className="w-full bg-white border border-[#E5E5E5] flex flex-col gap-[30px] p-[30px] rounded-3xl text-black">
-          {/* <a href="">
-            <div className="w-full bg-white border border-[#E5E5E5] flex items-center justify-between gap-2 p-5 rounded-3xl">
-              <div className="flex items-center gap-[10px]">
-                <div className="w-12 h-12 flex shrink-0 rounded-full bg-[#FFC736] items-center justify-center overflow-hidden">
-                  <img src="/assets/icons/cake.svg" alt="icon" />
-                </div>
-                <div className="flex flex-col gap-[2px]">
-                  <p className="font-semibold">100% It&apos;s Original</p>
-                  <p className="text-sm">We don&apos;t sell fake products</p>
-                </div>
-              </div>
-              <div className="flex shrink-0">
-                <img src="/assets/icons/arrow-right.svg" alt="icon" />
-              </div>
-            </div>
-          </a> */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -147,7 +139,6 @@ export default function CheckoutForm() {
           </div>
           <div className="flex flex-col gap-3">
             <SubmitButton />
-            {/* <a href="" className="p-[12px_24px] bg-white rounded-full text-center font-semibold border border-[#E5E5E5]">Contact Sales</a> */}
           </div>
         </div>
 
