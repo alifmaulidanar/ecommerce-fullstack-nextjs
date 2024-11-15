@@ -39,7 +39,7 @@ export default function UploadImages({ defaultImages }: UploadImagesProps) {
       <CardHeader>
         <CardTitle>Product Images</CardTitle>
         <CardDescription>
-          Lipsum dolor sit amet, consectetur adipiscing elit
+          Fill in the product images.
         </CardDescription>
       </CardHeader>
       <CardContent>

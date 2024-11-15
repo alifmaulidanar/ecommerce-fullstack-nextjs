@@ -61,7 +61,7 @@ export default function FormCategory({ type = "ADD", data = null }: FormCategory
                 <CardHeader>
                   <CardTitle>Category Details</CardTitle>
                   <CardDescription>
-                    Lipsum dolor sit amet, consectetur adipiscing elit
+                    Fill in the details of the category.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

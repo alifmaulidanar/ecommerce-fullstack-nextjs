@@ -67,7 +67,7 @@ export default function FormProduct({ children, type, data }: FormProductProps) 
                 <CardHeader>
                   <CardTitle>Product Details</CardTitle>
                   <CardDescription>
-                    Lipsum dolor sit amet, consectetur adipiscing elit
+                    Fill in the details of the product.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

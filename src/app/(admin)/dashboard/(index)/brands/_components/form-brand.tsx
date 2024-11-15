@@ -61,7 +61,7 @@ export default function FormBrand({ type = "ADD", data = null }: FormBrandProps)
                 <CardHeader>
                   <CardTitle>Brand Details</CardTitle>
                   <CardDescription>
-                    Lipsum dolor sit amet, consectetur adipiscing elit
+                    Fill in the details of the brand.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

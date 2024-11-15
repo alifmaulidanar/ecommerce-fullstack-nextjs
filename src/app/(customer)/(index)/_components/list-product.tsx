@@ -16,7 +16,7 @@ export default async function ListProduct({ title, isShowDetail = true }: ListPr
       <div className="flex items-center justify-between">
         <h2 className="font-bold text-2xl leading-[34px]">{title}</h2>
         {isShowDetail && (
-          <Link href="#" className="p-[12px_24px] border border-[#E5E5E5] rounded-full font-semibold">Explore All</Link>
+          <Link href="/catalogs" className="p-[12px_24px] border border-[#E5E5E5] rounded-full font-semibold">Explore All</Link>
         )}
       </div>
       <div className="grid grid-cols-5 gap-[30px] text-black">

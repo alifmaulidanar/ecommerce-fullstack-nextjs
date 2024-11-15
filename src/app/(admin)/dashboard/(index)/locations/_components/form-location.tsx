@@ -61,7 +61,7 @@ export default function FormLocation({ type = "ADD", data = null }: FormLocation
                 <CardHeader>
                   <CardTitle>Location Details</CardTitle>
                   <CardDescription>
-                    Lipsum dolor sit amet, consectetur adipiscing elit
+                    Fill in the details of the location.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
