@@ -75,3 +75,12 @@ export const schemaProduct = z.object({
 export const schemaProductEdit = schemaProduct.extend({
   id: z.number({ required_error: "ID is required" }),
 }).omit({ images: true });
+
+export const schemaShippingAddress = z.object({
+  name: z.string({ required_error: "Name is required" }).min(5, { message: "Name must be at least 5 characters" }),
+  address: z.string({ required_error: "Address is required" }).min(5, { message: "Address must be at least 5 characters" }),
+  city: z.string({ required_error: "City is required" }).min(3, { message: "City must be at least 3 characters" }),
+  postalCode: z.string({ required_error: "Postal Code is required" }).min(5, { message: "Postal code must be at least 5 characters" }),
+  notes: z.string().nullable(),
+  phone: z.string({ required_error: "Phone is required" }).min(5, { message: "Phone must be at least 5 characters" }),
+})
