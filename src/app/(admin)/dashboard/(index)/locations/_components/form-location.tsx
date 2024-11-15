@@ -30,7 +30,7 @@ function SubmitButton() {
   )
 }
 
-export default function FormLocation({ type = "ADD", data = null }, FormLocationProps) {
+export default function FormLocation({ type = "ADD", data = null }: FormLocationProps) {
   const updateLocationWithId = (_: unknown, formData: FormData) => updateLocation(_, formData, data?.id)
   const [state, formAction] = useFormState(type === "ADD" ? postLocation : updateLocationWithId, initialState)
 

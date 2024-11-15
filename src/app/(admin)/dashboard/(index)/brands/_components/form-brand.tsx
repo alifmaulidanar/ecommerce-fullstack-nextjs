@@ -30,7 +30,7 @@ function SubmitButton() {
   )
 }
 
-export default function FormBrand({ type = "ADD", data = null }, FormBrandProps) {
+export default function FormBrand({ type = "ADD", data = null }: FormBrandProps) {
   const updateBrandWithId = (_: unknown, formData: FormData) => updateBrand(_, formData, data?.id)
   const [state, formAction] = useFormState(type === "ADD" ? postBrand : updateBrandWithId, initialState)
 

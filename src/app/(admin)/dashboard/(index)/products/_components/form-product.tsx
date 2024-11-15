@@ -16,13 +16,6 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
-// const initialState: ActionResult = { error: "" }
-
-// interface FormBrandProps {
-//   type?: "ADD" | "EDIT",
-//   data?: Brand | null
-// }
-
 interface FormProductProps {
   children: ReactNode
   type: 'ADD' | 'EDIT'

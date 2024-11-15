@@ -30,7 +30,7 @@ function SubmitButton() {
   )
 }
 
-export default function FormCategory({ type = "ADD", data = null }, FormCategoryProps) {
+export default function FormCategory({ type = "ADD", data = null }: FormCategoryProps) {
   const updateCategoryWithId = (_: unknown, formData: FormData) => updateCategory(_, formData, data?.id)
   const [state, formAction] = useFormState(type === "ADD" ? postCategory : updateCategoryWithId, initialState)
 
