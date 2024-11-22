@@ -2,14 +2,6 @@ import { setupDevPlatform } from "@cloudflare/next-on-pages/next-dev";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config) => {
-    config.resolve.fallback = {
-      fs: false,
-      path: false,
-      os: false,
-    };
-    return config;
-  },
   images: {
     remotePatterns: [
       {
@@ -17,6 +9,22 @@ const nextConfig = {
         hostname: "uyduzjungsstvpgqwitc.supabase.co",
       },
     ],
+  },
+  webpack: (config) => {
+    // Add fallbacks for Node.js modules
+    config.resolve.fallback = {
+      fs: false,
+      path: false,
+      os: false,
+    };
+
+    // Add loader for HTML files
+    config.module.rules.push({
+      test: /\.html$/,
+      use: ["html-loader"],
+    });
+
+    return config;
   },
 };
 
