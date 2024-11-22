@@ -4,6 +4,8 @@ import { TFilter } from "@/hooks/useFilter"
 import prisma from "../../../../lib/prisma"
 import { getImageUrl } from "@/lib/supabase"
 
+export const runtime = "edge";
+
 export async function POST(request: Request) {
   try {
     const res = await request.json() as TFilter

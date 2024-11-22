@@ -3,10 +3,12 @@ import Link from 'next/link'
 import { columns } from './columns'
 import { getProducts } from './lib/data'
 import { PlusCircle } from 'lucide-react'
+import Sidebar from '../_components/sidebar'
 import { Button } from '@/components/ui/button'
 import { DataTable } from '@/components/ui/data-table'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import Sidebar from '../_components/sidebar'
+
+export const runtime = "edge";
 
 export default async function ProductPage() {
   const products = await getProducts()

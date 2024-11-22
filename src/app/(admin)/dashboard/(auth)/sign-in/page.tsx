@@ -1,5 +1,7 @@
 import FormSignIn from "./_components/form"
 
+export const runtime = "edge";
+
 export default function SignInPage() {
   return (
     <main className="w-full h-screen overflow-hidden relative">

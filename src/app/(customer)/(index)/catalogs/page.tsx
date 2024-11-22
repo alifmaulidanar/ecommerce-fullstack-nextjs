@@ -8,6 +8,8 @@ import FilterLocation from './_components/filter-location'
 import FilterCategory from './_components/filter-category'
 import ProductListing from './_components/product-listing'
 
+export const runtime = "edge";
+
 export default function CatalogsPage() {
   return (
     <>

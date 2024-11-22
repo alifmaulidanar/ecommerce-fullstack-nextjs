@@ -1,12 +1,14 @@
 import React from 'react'
 import Link from 'next/link'
 import { columns } from './columns'
+import { getBrands } from './lib/data'
 import { PlusCircle } from 'lucide-react'
+import Sidebar from '../_components/sidebar'
 import { Button } from '@/components/ui/button'
 import { DataTable } from '@/components/ui/data-table'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { getBrands } from './lib/data'
-import Sidebar from '../_components/sidebar'
+
+export const runtime = "edge";
 
 export default async function BrandsPage() {
   const brands = await getBrands()

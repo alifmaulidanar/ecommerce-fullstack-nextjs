@@ -1,5 +1,6 @@
 import React from 'react'
 import { Tedit } from '@/types'
+import { redirect } from 'next/navigation'
 import { Label } from '@/components/ui/label'
 import { getProductById } from '../../lib/data'
 import { getBrands } from '../../../brands/lib/data'
@@ -7,7 +8,8 @@ import FormProduct from '../../_components/form-product'
 import { getLocations } from '../../../locations/lib/data'
 import { getCategories } from '../../../categories/lib/data'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { redirect } from 'next/navigation'
+
+export const runtime = "edge";
 
 export default async function EditProduct({ params }: Tedit) {
   const product = await getProductById(Number(params.id))

@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation'
 import { getBrandById } from '../../lib/data'
 import FormBrand from '../../_components/form-brand'
 
+export const runtime = "edge";
+
 export default async function EditPage({ params }: Tedit) {
   const data = await getBrandById(params.id)
 

@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation'
 import { getLocationById } from '../../lib/data'
 import FormLocation from '../../_components/form-location'
 
+export const runtime = "edge";
+
 export default async function EditPage({ params }: Tedit) {
   const data = await getLocationById(params.id)
 

@@ -1,11 +1,13 @@
-import { getUser } from '@/lib/auth'
 import React from 'react'
+import { getUser } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import { DetailProductProp } from '@/types'
 import { getProductById } from './lib/data'
 import Navbar from '../../../_components/navbar'
 import PriceInfo from './_components/price-info'
 import CarouselImages from './_components/carousel-images'
+
+export const runtime = "edge";
 
 export default async function DetailProductPage({ params }: DetailProductProp) {
   const { session } = await getUser()

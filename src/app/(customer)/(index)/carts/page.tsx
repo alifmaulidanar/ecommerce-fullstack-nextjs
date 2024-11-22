@@ -3,6 +3,8 @@ import Navbar from '../_components/navbar'
 import CartProduct from './_components/cart-product'
 import CheckoutForm from './_components/checkout-form'
 
+export const runtime = "edge";
+
 export default function CartsPage() {
   return (
     <>

@@ -6,6 +6,8 @@ import { getLocations } from '../../locations/lib/data'
 import { getCategories } from '../../categories/lib/data'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
+export const runtime = "edge";
+
 export default async function CreatePage() {
   const brands = await getBrands()
   const categories = await getCategories()

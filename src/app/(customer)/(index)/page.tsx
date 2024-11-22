@@ -4,6 +4,8 @@ import ListCategory from './_components/list-category'
 import ListProduct from './_components/list-product'
 import ListBrand from './_components/list-brand'
 
+export const runtime = "edge";
+
 export default function LandingPage() {
   return (
     <>

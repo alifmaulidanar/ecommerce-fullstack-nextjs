@@ -1,9 +1,11 @@
 import React from 'react'
 import { columns } from './columns'
 import { getCustomers } from './lib/data'
+import Sidebar from '../_components/sidebar'
 import { DataTable } from '@/components/ui/data-table'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import Sidebar from '../_components/sidebar'
+
+export const runtime = "edge";
 
 export default async function CustomersPage() {
   const customers = await getCustomers()

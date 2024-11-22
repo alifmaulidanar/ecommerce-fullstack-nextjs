@@ -3,10 +3,12 @@ import Link from "next/link"
 import { columns } from "./columns"
 import { getLocations } from "./lib/data"
 import { PlusCircle } from "lucide-react"
+import Sidebar from "../_components/sidebar"
 import { Button } from "@/components/ui/button"
 import { DataTable } from "@/components/ui/data-table"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
-import Sidebar from "../_components/sidebar"
+
+export const runtime = "edge";
 
 export default async function LocationsPage() {
   const data = await getLocations()
